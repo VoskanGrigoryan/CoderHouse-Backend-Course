@@ -1,0 +1,50 @@
+@import 'antd/dist/antd.css';
+
+/*
+MAIN RED: #FF282C
+LIVE RED: #FB1116
+*/
+body {
+    margin: 0;
+    /* font-family: 'Pattaya', sans-serif; */
+    font-family: 'Rubik', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.lRed {
+    background-color: #fb1116;
+}
+
+.logo {
+    position: fixed;
+    left: 10px;
+    top: -10px;
+    z-index: 11;
+}
+
+p {
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+
+Link {
+    text-decoration: none;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    background-color: #fb1116;
+    color: white;
+    text-align: center;
+}
