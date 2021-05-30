@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 // import log4js from 'log4js';
+import nodemailer from 'nodemailer'
 import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
+
 
 try {
     mongoose
