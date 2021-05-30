@@ -27,7 +27,7 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
 
-console.log(__dirname);
+// console.log(__dirname);
 
 try {
     mongoose
