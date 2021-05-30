@@ -15,19 +15,17 @@ const __dirname = path.resolve(path.dirname(''));
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
 
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build'));
+});
+
 app.use(compression());
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', prodRoutes);
-
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build'));
-});
-
-// console.log(__dirname);
 
 try {
     mongoose
