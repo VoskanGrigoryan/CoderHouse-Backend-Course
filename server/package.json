@@ -20,7 +20,7 @@
         "express": "^4.17.1",
         "log4js": "^6.3.0",
         "mongoose": "^5.12.11",
-        "nodemailer": "^6.6.1",
+        "nodemailer": "^4.7.0",
         "nodemon": "^2.0.7"
     }
 }

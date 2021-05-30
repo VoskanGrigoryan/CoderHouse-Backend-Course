@@ -28,6 +28,30 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
 
+//configurations
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    auth: {
+        user: 'voskan.grigoryan.arg@gmail.com',
+        pass: 'bLZAxc0fp'
+    }
+});
+//mail options
+const mailOptions = {
+    from: 'Servidor Node.js',
+    to: 'voskan.grigoryan.arg@gmail.com',
+    subject: 'Mail de prueba desde Node.js',
+    html: '<h1 style="color: blue"> Contenido de prueba desde <span style="color: green;">Node.js con Nodemailer</span> </h1>'
+}
+//sending action
+transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+        console.log(err)
+        return err
+    }
+    console.log(info)
+})
+
 
 try {
     mongoose
