@@ -3,10 +3,6 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import Product from '../models/product.js';
 
-// const test = async (req, res) => {
-//     // res.status(200).json({ msg: 'Desde test' });
-// };
-
 const newProd = async (req, res) => {
     const prodDetails = req.body;
     const { title, description, price, size, delivery, location } = prodDetails;
