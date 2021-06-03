@@ -35,7 +35,7 @@ const login = async (req, res) => {
         from: 'Gmail',
         to: 'voskan.grigoryan.arg@gmail.com',
         subject: 'Mail de prueba desde Node.js',
-        html: `<h1>${userInfo.loginTime}</h1> message: ${userInfo.restOfData}`,
+        html: `<h1>${userInfo.loginTime}</h1>" message: ${userInfo.restOfData}`,
         // attachment: [{}],
     };
 
