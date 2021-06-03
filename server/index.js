@@ -13,7 +13,9 @@ const app = express();
 const conf = dotenv.config();
 const __dirname = path.resolve(path.dirname(''));
 const PORT = process.env.PORT || 4000;
-const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
+// const DB_CONNECTION_URL = 'mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce';
+
+const DB_CONNECTION_URL = 'mongodb://VoskanGrigoryan:bLZAxc0fp132@cluster0-shard-00-00.qb578.mongodb.net:27017,cluster0-shard-00-01.qb578.mongodb.net:27017,cluster0-shard-00-02.qb578.mongodb.net:27017/eCommerce?replicaSet=atlas-nr2rmk-shard-0&ssl=true&authSource=admin'                           
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', (req, res) => {

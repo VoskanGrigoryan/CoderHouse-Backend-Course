@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c29c96fd.chunk.css",
+    "main.js": "/static/js/main.d6a4cba9.chunk.js",
+    "main.js.map": "/static/js/main.d6a4cba9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a06e69b5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a06e69b5.js.map",
+    "static/css/2.00bb4513.chunk.css": "/static/css/2.00bb4513.chunk.css",
+    "static/js/2.5d46c1f7.chunk.js": "/static/js/2.5d46c1f7.chunk.js",
+    "static/js/2.5d46c1f7.chunk.js.map": "/static/js/2.5d46c1f7.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.00bb4513.chunk.css.map": "/static/css/2.00bb4513.chunk.css.map",
+    "static/css/main.c29c96fd.chunk.css.map": "/static/css/main.c29c96fd.chunk.css.map",
+    "static/js/2.5d46c1f7.chunk.js.LICENSE.txt": "/static/js/2.5d46c1f7.chunk.js.LICENSE.txt",
+    "static/media/anuncio.493b7aef.jpg": "/static/media/anuncio.493b7aef.jpg",
+    "static/media/anuncio2.c12e75e6.jpg": "/static/media/anuncio2.c12e75e6.jpg",
+    "static/media/anuncio3.ac96c70a.jpg": "/static/media/anuncio3.ac96c70a.jpg",
+    "static/media/dress.2063f71f.svg": "/static/media/dress.2063f71f.svg",
+    "static/media/hat.af3b6b5e.svg": "/static/media/hat.af3b6b5e.svg",
+    "static/media/jacket.cf2a239c.svg": "/static/media/jacket.cf2a239c.svg",
+    "static/media/pants.028049d5.svg": "/static/media/pants.028049d5.svg",
+    "static/media/phoneShopping.387869ec.svg": "/static/media/phoneShopping.387869ec.svg",
+    "static/media/selectingProduct.91e66b28.svg": "/static/media/selectingProduct.91e66b28.svg",
+    "static/media/shirt.b9d3eea1.svg": "/static/media/shirt.b9d3eea1.svg",
+    "static/media/shoe.59076db9.svg": "/static/media/shoe.59076db9.svg",
+    "static/media/webShopping.f283a1d5.svg": "/static/media/webShopping.f283a1d5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a06e69b5.js",
+    "static/css/2.00bb4513.chunk.css",
+    "static/js/2.5d46c1f7.chunk.js",
+    "static/css/main.c29c96fd.chunk.css",
+    "static/js/main.d6a4cba9.chunk.js"
+  ]
+}
