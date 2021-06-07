@@ -1,4 +1,4 @@
-import User from '../models/facebookUser.js';
+import fbUser from '../models/facebookUser.js';
 import nodemailer from 'nodemailer';
 
 // ---------------------------------------------NODEMAILER-----------------------------------------------------------------
@@ -36,7 +36,6 @@ const login = async (req, res) => {
         to: 'voskan.grigoryan.arg@gmail.com',
         subject: 'Mail de prueba desde Node.js',
         html: `<h1>${userInfo.loginTime}</h1>" message: ${userInfo.restOfData}`,
-        // attachment: [{}],
     };
 
     //sending action
@@ -51,20 +50,14 @@ const login = async (req, res) => {
     res.status(201).send(userInfo);
 };
 
-const logout = async (req, res) => {
-    //Case for user logout form facebook
-    let now = new Date();
-    let userInfo = {
-        logout: now,
-        restOfData: 'I havent implemented the option to send this from the front, shoot',
-    };
-};
-
 const facebookLogin = async (req, res) => {
     const user = req.body;
+    const { name, email, picture } = user;
+    const profilePicture = picture.data.url;
+    const time = new Date();
 
-    const userExists = await fbUser.findOne({ userName: req.body.name });
-    if (userExists) {
+    const userExists = await fbUser.findOne({ name: name });
+    if (userExists !== null || userExists !== undefined) {
         return res.status(409).json({ error: 'User already exists' });
     }
     const newUser = new fbUser(user);
@@ -72,10 +65,40 @@ const facebookLogin = async (req, res) => {
     try {
         newUser.save();
         res.status(200).json(req.body);
+
+        const mailOptions = {
+            from: 'Gmail',
+            to: email,
+            subject: 'Facebook login',
+            html: `<h1>User connected at ${time} for the user ${name}</h1>`,
+            attachments: [
+                {
+                    filename: 'profile photo.png',
+                    path: `${profilePicture}`,
+                },
+            ],
+        };
+
+        //sending action
+        gTransporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.log(err);
+                return err;
+            }
+            console.log(info);
+        });
     } catch (err) {
         res.status(409).json({ err });
     }
 };
 
-// export default { login, logout, facebookLogin };
-export default login;
+const logout = async (req, res) => {
+    //Case for user logout form facebook
+    let now = new Date();
+    let userInfo = {
+        logout: now,
+        restOfData: 'No functionality yet from the frontend for logouts, shoot..',
+    };
+};
+
+export { login, facebookLogin, logout };

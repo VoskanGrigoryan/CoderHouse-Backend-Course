@@ -29,6 +29,7 @@ const client = new twilio(accountSid, authToken);
 //TWILIO AUN NO PUEDO HACER QUE FUNCIONE PORQUE NO ENTIENDO COMO FUNCIONA
 //LO DE LOS NUMEROS DE TELEFONO, ELLOS ME DAN 15 DOLARES PARA TESTEAR PERO
 //ESO DESPUES SE PAGA? Consultar con tutor
+
 client.messages
     .create({
         body: 'Hello from Node',
