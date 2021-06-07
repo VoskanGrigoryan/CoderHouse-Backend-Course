@@ -8,7 +8,6 @@ import strategy from 'passport-facebook';
 import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
-import twilio from 'twilio';
 
 import User from './models/facebookUser.js';
 
@@ -22,21 +21,10 @@ const __dirname = path.resolve(path.dirname(''));
 const FacebookStrategy = strategy.Strategy;
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
-const accountSid = 'AC01557da25e1fcb106a80e09b97bbc379';
-const authToken = 'a8857e838fc416a98a06de1a8b8da1f0';
-const client = new twilio(accountSid, authToken);
 
 //TWILIO AUN NO PUEDO HACER QUE FUNCIONE PORQUE NO ENTIENDO COMO FUNCIONA
 //LO DE LOS NUMEROS DE TELEFONO, ELLOS ME DAN 15 DOLARES PARA TESTEAR PERO
 //ESO DESPUES SE PAGA? Consultar con tutor
-
-client.messages
-    .create({
-        body: 'Hello from Node',
-        to: '+12345678901', // Text this number
-        from: '+12345678901', // From a valid Twilio number
-    })
-    .then((message) => console.log(message.sid));
 
 passport.use(
     new FacebookStrategy(

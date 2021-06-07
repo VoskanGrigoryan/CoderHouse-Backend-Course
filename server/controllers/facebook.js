@@ -1,6 +1,10 @@
 import fbUser from '../models/facebookUser.js';
 import nodemailer from 'nodemailer';
+import twilio from 'twilio';
 
+const accountSid = 'AC01557da25e1fcb106a80e09b97bbc379';
+const authToken = 'a1bd7cac502be956e23d1f1c973900b6';
+const client = new twilio(accountSid, authToken);
 // ---------------------------------------------NODEMAILER-----------------------------------------------------------------
 //configurations
 const transporter = nodemailer.createTransport({
@@ -25,6 +29,7 @@ const gTransporter = nodemailer.createTransport({
 const login = async (req, res) => {
     //Case for user login into facebook
     const now = new Date();
+
     const userInfo = {
         loginTime: now,
         restOfData: 'I havent implemented that login from the front, shoot',
@@ -55,6 +60,14 @@ const facebookLogin = async (req, res) => {
     const { name, email, picture } = user;
     const profilePicture = picture.data.url;
     const time = new Date();
+
+    client.messages
+        .create({
+            body: `Hello! This is a message send when logging in to facebook. User: ${name}`,
+            to: '+541122540293', // Text this number
+            from: '+13346030827', // From a valid Twilio number
+        })
+        .then((message) => console.log(message.sid));
 
     const userExists = await fbUser.findOne({ name: name });
     if (userExists !== null || userExists !== undefined) {
