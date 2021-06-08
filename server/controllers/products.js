@@ -1,6 +1,4 @@
-// require('dotenv').config();
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
 import Product from '../models/product.js';
 
 const newProd = async (req, res) => {
