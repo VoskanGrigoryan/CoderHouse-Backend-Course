@@ -13,7 +13,8 @@ import User from './models/facebookUser.js';
 
 import prodRoutes from './routes/prodRoutes.js';
 import facebookLogin from './routes/facebook.js';
-import { userInfo } from 'os';
+import user from './routes/user.js';
+// import { userInfo } from 'os';
 
 const app = express();
 const conf = dotenv.config();
@@ -21,10 +22,6 @@ const __dirname = path.resolve(path.dirname(''));
 const FacebookStrategy = strategy.Strategy;
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
-
-//TWILIO AUN NO PUEDO HACER QUE FUNCIONE PORQUE NO ENTIENDO COMO FUNCIONA
-//LO DE LOS NUMEROS DE TELEFONO, ELLOS ME DAN 15 DOLARES PARA TESTEAR PERO
-//ESO DESPUES SE PAGA? Consultar con tutor
 
 passport.use(
     new FacebookStrategy(
@@ -55,6 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 // });
 app.use('/', prodRoutes);
 app.use('/', facebookLogin);
+app.use('/', user);
 
 try {
     mongoose

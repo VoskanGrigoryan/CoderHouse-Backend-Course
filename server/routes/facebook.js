@@ -1,5 +1,4 @@
 import express from 'express';
-import passport from 'passport';
 import { login, facebookLogin } from '../controllers/facebook.js';
 
 const router = express.Router();

@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login';
 import { useDispatch } from 'react-redux';
 import { loginFacebook } from '../../../redux/actions/user';
-
+import { loginUser } from '../../../redux/actions/user';
 import { Input, Button } from 'antd';
 
 const Login = () => {
@@ -25,7 +25,10 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userData);
+
+        dispatch(loginUser(userData));
+
+        history.push('/');
     };
 
     const responseFacebook = (response) => {

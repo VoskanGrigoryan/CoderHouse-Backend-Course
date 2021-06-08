@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 var fbUserSchema = mongoose.Schema({
     uid: String,
@@ -6,9 +6,9 @@ var fbUserSchema = mongoose.Schema({
     email: String,
     name: String,
     gender: String,
-    pic: String
+    pic: String,
 });
 
-const User = mongoose.model("users", fbUserSchema);
+const User = mongoose.model('usersFB', fbUserSchema);
 
 export default User;

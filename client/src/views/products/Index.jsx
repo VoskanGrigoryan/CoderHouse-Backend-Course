@@ -6,9 +6,9 @@ import anuncio3 from '../../assets/images/anuncio3.jpg';
 import CategoryCard from '../../components/CategoryCard';
 
 const Products = () => {
-    const test = (e) => {
-        console.log(e);
-    };
+    // const test = (e) => {
+    //     console.log(e);
+    // };
 
     return (
         <div style={{ paddingTop: '60px', paddingLeft: '30px', paddingRight: '30px' }}>
