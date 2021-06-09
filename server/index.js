@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-// import log4js from 'log4js';
+import log4js from 'log4js';
 import passport from 'passport';
 import strategy from 'passport-facebook';
 import path from 'path';
@@ -54,6 +54,21 @@ app.use('/', prodRoutes);
 app.use('/', facebookLogin);
 app.use('/', user);
 
+log4js.configure({
+    appenders: {
+        FileErr: { type: 'file', filename: 'error.log' },
+        FileWarn: { type: 'file', filename: 'warn.log' },
+        Consola: { type: 'console' },
+    },
+    categories: {
+        default: { appenders: ['Consola'], level: 'info' },
+        Error: { appenders: ['FileErr'], level: 'error' },
+        Warn: { appenders: ['FileWarn'], level: 'warn' },
+    },
+});
+
+const logger = log4js.getLogger('default');
+
 try {
     mongoose
         .connect(
@@ -63,12 +78,12 @@ try {
                 useCreateIndex: true,
                 useUnifiedTopology: true,
             },
-            console.log('Connected to db')
+            logger.info('Application connected to DB')
         )
         .then(() => {
-            app.listen(PORT, console.log(`Running on port ${PORT}`));
+            app.listen(PORT, logger.info(`Running on port ${PORT}`));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => logger.error(err));
 } catch (error) {
-    console.log(error);
+    logger.error(error);
 }

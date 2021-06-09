@@ -2,7 +2,10 @@ import User from '../models/user.js';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import log4js from 'log4js';
 const conf = dotenv.config();
+
+const logger = log4js.getLogger('default');
 
 //Nodemailer config
 const Transporter = nodemailer.createTransport({
@@ -40,11 +43,11 @@ const createUser = async (req, res) => {
         //sending action
         Transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
-                console.log(err);
+                logger.error(err);
                 return err;
             }
             // console.log(info);
-            console.log('Register email sent to admin 👌');
+            logger.info('Register email sent to admin 👌');
         });
 
         res.status(200).json(userData);
@@ -69,7 +72,7 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ error: 'Contraseña no valida' });
     }
 
-    console.log('Un lujo rey se inicio sesion');
+    logger.info('Un lujo rey se inicio sesion 👌');
     res.status(200).send(user);
 };
 
