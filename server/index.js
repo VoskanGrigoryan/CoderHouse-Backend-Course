@@ -9,6 +9,10 @@ import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
 
+//GRAPHQL
+import { graphqlHTTP } from 'express-graphql';
+import { buildSchema } from 'graphql';
+
 import User from './models/facebookUser.js';
 
 import prodRoutes from './routes/prodRoutes.js';
@@ -22,6 +26,17 @@ const __dirname = path.resolve(path.dirname(''));
 const FacebookStrategy = strategy.Strategy;
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+var root = {
+    hello: () => {
+        return 'Hello world!';
+    },
+};
 
 passport.use(
     new FacebookStrategy(
@@ -46,10 +61,14 @@ app.use(cookieParser());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build'));
-// });
+app.use(
+    '/graphql',
+    graphqlHTTP({
+        schema: schema,
+        rootValue: root,
+        graphiql: true,
+    })
+);
 app.use('/', prodRoutes);
 app.use('/', facebookLogin);
 app.use('/', user);
