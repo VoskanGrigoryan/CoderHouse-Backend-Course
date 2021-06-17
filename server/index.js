@@ -9,16 +9,11 @@ import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
 
-//GRAPHQL
-import { graphqlHTTP } from 'express-graphql';
-import { buildSchema } from 'graphql';
-
 import User from './models/facebookUser.js';
 
 import prodRoutes from './routes/prodRoutes.js';
 import facebookLogin from './routes/facebook.js';
 import user from './routes/user.js';
-import { createUser, loginUser } from './controllers/user.js';
 // import { userInfo } from 'os';
 
 const app = express();
@@ -30,34 +25,9 @@ const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.q
 
 //ACA SE ARMAN LOS SCHEMAS DE LAS QUERYS -> ESQUEMA DE GraphQL
 //Aca se puede customizar, se arma es schema de cada cosa acá
-let schema = buildSchema(`
-    type Query {
-        users: [User]
-        products: [Product]
-    },
-    type User {
-        userName: String,
-        email: String,
-        password: String,
-    },
-    type Product {
-        name: String,
-        description: String,
-        seller: String,
-        price: Int,
-        location: String,
-    }
-`);
 
 //Root resolver: Mapa de acciones - funciones -> El objeto del root resolver
 //Se pasan funciones createUser y loginUser, que se ejecutan en el controller
-let root = {
-    hello: () => {
-        return 'Hello world!';
-    },
-    createUser: createUser,
-    loginUser: loginUser,
-};
 
 passport.use(
     new FacebookStrategy(
@@ -82,14 +52,7 @@ app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
 //Habilita la herramienta de GraphiQL
-app.use(
-    '/graphql',
-    graphqlHTTP({
-        schema: schema,
-        rootValue: root,
-        graphiql: true,
-    })
-);
+
 app.use('/', prodRoutes);
 app.use('/', facebookLogin);
 app.use('/', user);
