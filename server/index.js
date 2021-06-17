@@ -30,6 +30,24 @@ const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.q
 
 //ACA SE ARMAN LOS SCHEMAS DE LAS QUERYS -> ESQUEMA DE GraphQL
 //Aca se puede customizar, se arma es schema de cada cosa acá
+let schema = buildSchema(`
+    type Query {
+        users: [User]
+        products: [Product]
+    },
+    type User {
+        userName: String,
+        email: String,
+        password: String,
+    },
+    type Product {
+        name: String,
+        description: String,
+        seller: String,
+        price: Int,
+        location: String,
+    }
+`);
 
 //Root resolver: Mapa de acciones - funciones -> El objeto del root resolver
 //Se pasan funciones createUser y loginUser, que se ejecutan en el controller
