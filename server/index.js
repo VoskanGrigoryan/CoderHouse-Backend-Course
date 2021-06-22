@@ -14,7 +14,6 @@ import User from './models/facebookUser.js';
 import prodRoutes from './routes/prodRoutes.js';
 import facebookLogin from './routes/facebook.js';
 import user from './routes/user.js';
-// import { userInfo } from 'os';
 
 const app = express();
 const conf = dotenv.config();
