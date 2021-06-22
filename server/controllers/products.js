@@ -3,7 +3,7 @@ import Product from '../models/product.js';
 
 const newProd = async (req, res) => {
     const prodDetails = req.body;
-    const { title, description, price, size, delivery, location } = prodDetails;
+    const { title, description, price } = prodDetails;
 
     // const prodAlreadyExists = await Product.findOne({})
     const newProduct = new Product(prodDetails);
