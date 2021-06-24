@@ -15,6 +15,8 @@ import products from './routes/products.js';
 import facebookLogin from './routes/facebook.js';
 import user from './routes/user.js';
 
+import filesDAO from './arch/filesDAO.js';
+
 const app = express();
 const conf = dotenv.config();
 const __dirname = path.resolve(path.dirname(''));
@@ -22,6 +24,14 @@ const FacebookStrategy = strategy.Strategy;
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
+tests();
+//Acá figura que se pudo conectar a la db pero al hacer el llamado a las apis tira error
+//Cannot POST /user/login
+async function tests() {
+    const testDao = new filesDAO();
+    await testDao.init();
+    // console.log(await testDao.getFyH());
+}
 passport.use(
     new FacebookStrategy(
         {
@@ -61,21 +71,21 @@ log4js.configure({
 
 const logger = log4js.getLogger('default');
 //TEST
-try {
-    mongoose
-        .connect(
-            DB_CONNECTION_URL,
-            {
-                useNewUrlParser: true,
-                useCreateIndex: true,
-                useUnifiedTopology: true,
-            },
-            logger.info('Application connected to DB')
-        )
-        .then(() => {
-            app.listen(PORT, logger.info(`Running on port ${PORT}`));
-        })
-        .catch((err) => logger.error(err));
-} catch (error) {
-    logger.error(error);
-}
+// try {
+//     mongoose
+//         .connect(
+//             DB_CONNECTION_URL,
+//             {
+//                 useNewUrlParser: true,
+//                 useCreateIndex: true,
+//                 useUnifiedTopology: true,
+//             },
+//             logger.info('Application connected to DB')
+//         )
+//         .then(() => {
+//             app.listen(PORT, logger.info(`Running on port ${PORT}`));
+//         })
+//         .catch((err) => logger.error(err));
+// } catch (error) {
+//     logger.error(error);
+// }

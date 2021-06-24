@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ error: 'Contraseña no valida' });
     }
 
-    logger.info('Un lujo rey se inicio sesion 👌');
+    logger.info('Un lujo rey, se inicio sesion 👌');
     res.status(200).send(user);
 };
 

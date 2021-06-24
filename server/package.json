@@ -22,6 +22,7 @@
         "graphql": "^15.5.0",
         "log4js": "^6.3.0",
         "mocha": "^9.0.0",
+        "mongodb": "^3.6.8",
         "mongoose": "^5.12.11",
         "nodemailer": "^4.7.0",
         "nodemon": "^2.0.7",
