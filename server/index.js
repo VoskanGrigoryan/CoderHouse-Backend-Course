@@ -60,7 +60,7 @@ log4js.configure({
 });
 
 const logger = log4js.getLogger('default');
-
+//TEST
 try {
     mongoose
         .connect(
