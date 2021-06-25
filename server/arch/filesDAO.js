@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
 class FileDao {
+    //func init corre bien, y tira los console.log de que se conecto a la db
+    //pero cuando hago una peticion al service me dice que no se puede correr get/post de x cosa
     async init() {
         try {
             mongoose
