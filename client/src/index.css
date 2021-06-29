@@ -17,7 +17,7 @@ code {
 }
 
 .lRed {
-    background-color: #fb1116;
+    background-color: #0077b6;
 }
 
 .logo {
@@ -44,7 +44,7 @@ Link {
     height: auto;
     /* padding-top: 5px;
     padding-bottom: 5px; */
-    background-color: #fb1116;
+    background-color: #0077b6;
     color: white;
     text-align: center;
 }

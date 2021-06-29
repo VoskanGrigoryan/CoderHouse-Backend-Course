@@ -3,7 +3,7 @@ import { Card } from 'antd';
 
 const CategoryCard = () => {
     const headerStyle = {
-        backgroundColor: '#fb1116',
+        backgroundColor: '#0077b6',
         color: 'white',
     };
 

@@ -9,7 +9,7 @@ const PopularItems = () => {
     };
 
     const headerStyle = {
-        backgroundColor: '#fb1116',
+        backgroundColor: 'black',
         color: 'white',
     };
 

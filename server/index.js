@@ -54,7 +54,7 @@ app.use(cookieParser());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', products, facebookLogin, user);
+// app.use('/', products, facebookLogin, user);
 
 log4js.configure({
     appenders: {
@@ -70,7 +70,6 @@ log4js.configure({
 });
 
 const logger = log4js.getLogger('default');
-//TEST
 // try {
 //     mongoose
 //         .connect(
