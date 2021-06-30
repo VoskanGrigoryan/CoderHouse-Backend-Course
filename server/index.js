@@ -69,6 +69,7 @@ log4js.configure({
     },
 });
 
+//TEST
 const logger = log4js.getLogger('default');
 // try {
 //     mongoose
