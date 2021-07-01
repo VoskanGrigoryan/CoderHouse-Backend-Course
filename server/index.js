@@ -10,10 +10,12 @@ import cors from 'cors';
 import prodRoutes from './routes/prodRoutes.js';
 
 const app = express();
-const conf = dotenv.config();
 const __dirname = path.resolve(path.dirname(''));
+const conf = dotenv.config({
+    path: path.resolve(__dirname, process.env.NODE_ENV + 'env')
+});
 const PORT = process.env.PORT || 4000;
-const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
+const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
 app.use(compression());
 app.use(cors());
@@ -26,8 +28,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
-
-console.log(__dirname);
 
 try {
     mongoose
@@ -42,6 +42,7 @@ try {
         )
         .then(() => {
             app.listen(PORT, console.log(`Running on port ${PORT}`));
+            console.log(`Working in ${process.env.NODE_ENV} mode🥳🥳`);
         })
         .catch((err) => console.log(err));
 } catch (error) {
