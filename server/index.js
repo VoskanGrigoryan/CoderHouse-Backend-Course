@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 // import log4js from 'log4js';
+import yargs from 'yargs'
+import argv from "yargs"
 import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
@@ -17,7 +19,10 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
-console.log(process.env.USER, process.env.PASSWORD, process.env.DB_NAME)
+// console.log(process.env.USER, process.env.PASSWORD, process.env.DB_NAME)
+console.log(argv.name)
+        
+// console.log(argv)
 app.use(compression());
 app.use(cors());
 app.use(cookieParser());
@@ -29,6 +34,15 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
+
+//YARGS command for connecting to DB
+// yargs.command({
+//     command: 'connectDB',
+//     describe: 'Connects to database, duh..'
+//     builder: {
+//         g
+//     }
+// })
 
 try {
     mongoose
