@@ -11,12 +11,13 @@ import prodRoutes from './routes/prodRoutes.js';
 
 const app = express();
 const __dirname = path.resolve(path.dirname(''));
-const conf = dotenv.config({
-    path: path.resolve(__dirname, process.env.NODE_ENV + 'env')
-});
+dotenv.config();
+
+// console.log(process.env.NODE_ENV)
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
+console.log(process.env.USER, process.env.PASSWORD, process.env.DB_NAME)
 app.use(compression());
 app.use(cors());
 app.use(cookieParser());
