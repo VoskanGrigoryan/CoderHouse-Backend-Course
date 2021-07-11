@@ -19,7 +19,6 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
-// console.log(process.env.USER, process.env.PASSWORD, process.env.DB_NAME)
 console.log(argv.name)
         
 // console.log(argv)
