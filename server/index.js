@@ -35,15 +35,6 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
 });
 
-//YARGS command for connecting to DB
-// yargs.command({
-//     command: 'connectDB',
-//     describe: 'Connects to database, duh..'
-//     builder: {
-//         g
-//     }
-// })
-
 try {
     mongoose
         .connect(
