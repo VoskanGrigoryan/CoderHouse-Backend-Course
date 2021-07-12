@@ -2,7 +2,6 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-// import log4js from 'log4js';
 import yargs from 'yargs'
 import argv from "yargs"
 import path from 'path';
