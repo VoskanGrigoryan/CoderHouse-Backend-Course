@@ -2,8 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import yargs from 'yargs'
-import argv from "yargs"
+import yargs from 'yargs';
+import argv from 'yargs';
 import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
@@ -18,9 +18,8 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
-console.log(argv.name)
-        
-// console.log(argv)
+console.log(argv.name);
+
 app.use(compression());
 app.use(cors());
 app.use(cookieParser());
