@@ -58,3 +58,33 @@ describe('Update a product found by name', () => {
             });
     });
 });
+
+//Not working
+describe('delete the product by NAME', () => {
+    it('should delete the NAME with NAME New product', (done) => {
+        chai.request(url)
+            .get('/countries')
+            .end(function (err, res) {
+                console.log(res.body);
+                expect(res.body).to.have.lengthOf(2);
+                expect(res).to.have.status(200);
+                chai.request(url)
+                    .del('New product1')
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        expect(res).to.have.status(200);
+                        chai.request(url)
+                            .get('/products')
+                            .end(function (err, res) {
+                                console.log(res.body);
+                                expect(res.body).to.have.lengthOf(1);
+                                expect(res.body[0])
+                                    .to.have.property('id')
+                                    .to.be.equal(0);
+                                expect(res).to.have.status(200);
+                                done();
+                            });
+                    });
+            });
+    });
+});
