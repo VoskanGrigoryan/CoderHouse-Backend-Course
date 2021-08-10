@@ -42,10 +42,14 @@ describe('Testing for products', () => {
     });
 });
 
-describe('Update a product found by ID', () => {
+describe('Update a product found by name', () => {
     it('should update the price', (done) => {
         chai.request(url)
-            .put('/country/1/days/20')
+            .put('update-product')
+            .send({
+                title: 'New product',
+                price: 400, //Price goes from 200 to 400?
+            })
             .end(function (err, res) {
                 console.log(res.body);
                 expect(res.body).to.have.property('days').to.be.equal(20);
