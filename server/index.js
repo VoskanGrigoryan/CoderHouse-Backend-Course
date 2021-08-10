@@ -3,59 +3,58 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import log4js from 'log4js';
-import passport from 'passport';
-import strategy from 'passport-facebook';
+// import passport from 'passport';
+// import strategy from 'passport-facebook';
 import path from 'path';
 import compression from 'compression';
 import cors from 'cors';
 
 import User from './models/facebookUser.js';
 
-import prodRoutes from './routes/prodRoutes.js';
+import products from './routes/products.js';
 import facebookLogin from './routes/facebook.js';
 import user from './routes/user.js';
-// import { userInfo } from 'os';
+
+import filesDAO from './arch/filesDAO.js';
 
 const app = express();
 const conf = dotenv.config();
 const __dirname = path.resolve(path.dirname(''));
-const FacebookStrategy = strategy.Strategy;
+// const FacebookStrategy = strategy.Strategy;
 const PORT = process.env.PORT || 4000;
-const DB_CONNECTION_URL = `mongodb+srv://VoskanGrigoryan:bLZAxc0fp132@cluster0.qb578.mongodb.net/eCommerce`;
+const DB_CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qb578.mongodb.net/${process.env.DB_NAME}`;
 
-//ACA SE ARMAN LOS SCHEMAS DE LAS QUERYS -> ESQUEMA DE GraphQL
-//Aca se puede customizar, se arma es schema de cada cosa acá
-
-//Root resolver: Mapa de acciones - funciones -> El objeto del root resolver
-//Se pasan funciones createUser y loginUser, que se ejecutan en el controller
-
-passport.use(
-    new FacebookStrategy(
-        {
-            clientID: 309747883964855,
-            clientSecret: 'db0409fe3b27fe52d96329fd8d19b78b',
-            callbackURL: 'http://www.example.com/auth/facebook/callback',
-        },
-        function (accessToken, refreshToken, profile, done) {
-            User.findOrCreate(profile.id, function (err, user) {
-                if (err) {
-                    return done(err);
-                }
-            });
-        }
-    )
-);
+//  tests();
+//Acá figura que se pudo conectar a la db pero al hacer el llamado a las apis tira error
+//Cannot POST /user/login
+// async function tests() {
+//     const testDao = new filesDAO();
+//     await testDao.init();
+//     // console.log(await testDao.getFyH());
+// }
+// passport.use(
+//     new FacebookStrategy(
+//         {
+//             clientID: 309747883964855,
+//             clientSecret: 'db0409fe3b27fe52d96329fd8d19b78b',
+//             callbackURL: 'http://www.example.com/auth/facebook/callback',
+//         },
+//         function (accessToken, refreshToken, profile, done) {
+//             User.findOrCreate(profile.id, function (err, user) {
+//                 if (err) {
+//                     return done(err);
+//                 }
+//             });
+//         }
+//     )
+// );
 app.use(compression());
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-//Habilita la herramienta de GraphiQL
-
-app.use('/', prodRoutes);
-app.use('/', facebookLogin);
-app.use('/', user);
+app.use('/', products, facebookLogin, user);
 
 log4js.configure({
     appenders: {
@@ -71,7 +70,6 @@ log4js.configure({
 });
 
 const logger = log4js.getLogger('default');
-
 try {
     mongoose
         .connect(

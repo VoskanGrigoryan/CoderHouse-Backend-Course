@@ -6,7 +6,11 @@ export default (info = data, action) => {
         case 'CREATE_PRODUCT':
             return [...info, action.payload];
         case 'GET_PRODUCTS':
-            return [...info, action.payload];
+            return [...action.payload];
+        case 'UPDATE_PRODUCT':
+            return [...info, ...action.payload];
+        case 'DELETE_PRODUCT':
+            return [...info, ...action.payload];
         default:
             return info;
     }

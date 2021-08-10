@@ -16,6 +16,26 @@ export const getProducts = () => async (dispatch) => {
 
         dispatch({ type: 'GET_PRODUCTS', payload: data });
     } catch (error) {
+        console.dir(error);
+    }
+};
+
+export const updateProduct = () => async (dispatch) => {
+    try {
+        const { data } = await api.updateProduct();
+
+        dispatch({ type: 'UPDATE_PRODUCT', payload: data });
+    } catch (error) {
         console.log({ error });
     }
 };
+
+// export const deleteProduct = () => async (dispatch) => {
+//     try {
+//         const { data } = await api.deleteProduct();
+
+//         dispatch({ type: 'DELETE_PRODUCT', payload: data });
+//     } catch (error) {
+//         console.log({ error });
+//     }
+// };
