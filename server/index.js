@@ -3,6 +3,13 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import log4js from 'log4js';
+
+//CHAI---------------------------------------------------------------------/
+import { assert } from 'chai'; // Using Assert style
+import { expect } from 'chai'; // Using Expect style
+import { should } from 'chai'; // Using Should style
+//-------------------------------------------------------------------------/
+should(); // Modifies `Object.prototype`
 // import passport from 'passport';
 // import strategy from 'passport-facebook';
 import path from 'path';

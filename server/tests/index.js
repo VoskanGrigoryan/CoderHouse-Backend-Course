@@ -4,6 +4,11 @@ import { should } from 'chai'; // Using Should style
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
+//MOCHA SCRIPT
+// "scripts": {
+//   "test": "mocha"
+// }
+
 should();
 expect();
 assert();
